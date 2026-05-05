@@ -1,0 +1,17 @@
+[
+  {
+    "id": "A",
+    "name": "London Breakout EUR/USD",
+    "description": "I trade EURUSD on the London open. Wait for the first hour after 8am London. Mark the high and low of that hour. If price breaks the high by 5 pips, go long with stop at the low and target 1.5x risk. Opposite for short. Skip Wednesdays cause of news. Close everything before NY close."
+  },
+  {
+    "id": "B",
+    "name": "RSI mean reversion on US tech",
+    "description": "Watch QQQ on 15min. when RSI(14) drops under 25 buy half position, if it goes under 20 add the rest. exit at RSI 50 or end of day whichever first. dont trade in last 30 min. no shorts."
+  },
+  {
+    "id": "C",
+    "name": "Synthetic Index Martingale (volatility 75)",
+    "description": "On Volatility 75 Index 1min — fixed $1 stake, predict UP. If lose, double stake on next tick. Reset to $1 after a win. Stop trading session if drawdown > $200 OR after 50 trades, whichever first."
+  }
+]
