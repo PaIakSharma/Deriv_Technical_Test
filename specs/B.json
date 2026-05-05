@@ -1,0 +1,88 @@
+{
+  "strategy_id": "B",
+  "confidence": 0.55,
+  "instrument": "QQQ",
+  "timeframe": "15m",
+  "data_source": "yfinance:QQQ",
+  "entry_conditions": [
+    {
+      "condition_id": "rsi_below_25_first_half",
+      "expression": "When RSI(14) on close drops below 25 and no position is open, enter long with size = 0.5.",
+      "indicators_required": [
+        "RSI(14)"
+      ]
+    },
+    {
+      "condition_id": "rsi_below_20_second_half",
+      "expression": "If already in a half-size long position and RSI(14) drops below 20, add another 0.5 size at the new bar's open.",
+      "indicators_required": [
+        "RSI(14)"
+      ]
+    }
+  ],
+  "exit_conditions": [
+    {
+      "condition_id": "rsi_above_50",
+      "expression": "Exit the entire position when RSI(14) crosses above 50."
+    },
+    {
+      "condition_id": "end_of_day",
+      "expression": "Close any open position at the regular session close."
+    }
+  ],
+  "position_sizing_rule": "Two halves: 0.5 unit on first signal, +0.5 unit on second signal (total 1.0).",
+  "stop_loss_rule": null,
+  "take_profit_rule": null,
+  "session_filters": [
+    "No new entries within the last 30 minutes of the regular session.",
+    "All positions force-closed at the regular session close.",
+    "Long-only: shorts forbidden."
+  ],
+  "risk_controls": [
+    "Maximum one position at a time (with up to two scale-in tranches).",
+    "No stop-loss is specified \u2014 exits rely on RSI mean reversion or EOD."
+  ],
+  "explicit_ambiguities": [
+    {
+      "ambiguity": "'RSI(14)' does not specify the smoothing method \u2014 Wilder's smoothing vs simple moving average vs exponential.",
+      "assumption_used_for_backtest": "Wilder's RSI on close prices, the standard Welles Wilder original.",
+      "impact_if_different": "SMA-based RSI is more reactive and would produce more sub-25 readings, likely increasing trade count and changing entry prices."
+    },
+    {
+      "ambiguity": "'Half position' is undefined. There is no notion of total capital, leverage, or risk-per-trade.",
+      "assumption_used_for_backtest": "Half position = 0.5 units, full = 1.0 units. PnL is reported per unit.",
+      "impact_if_different": "Real risk-based sizing (e.g. fixed % of equity) would change drawdown and Sharpe but not win-rate."
+    },
+    {
+      "ambiguity": "'End of day' is undefined: regular hours close 16:00 ET, extended hours run later.",
+      "assumption_used_for_backtest": "Regular session close: last 15-min bar of the regular trading day.",
+      "impact_if_different": "Holding into extended hours would expose the strategy to thin-liquidity gaps not modelled here."
+    },
+    {
+      "ambiguity": "The strategy does not say whether to re-enter the same day after an exit.",
+      "assumption_used_for_backtest": "Allow re-entry after a full exit, subject to all other filters.",
+      "impact_if_different": "A 'one trade per day' rule would cap exposure and mechanically lower trade count."
+    },
+    {
+      "ambiguity": "There is no stop-loss rule; the position is exposed indefinitely until RSI mean-reverts or EOD hits.",
+      "assumption_used_for_backtest": "No stop-loss; exits only on RSI > 50 or EOD.",
+      "impact_if_different": "Adding a max adverse excursion stop would cap tail-loss but also truncate winning recoveries."
+    },
+    {
+      "ambiguity": "Behaviour when RSI re-crosses 25\u219220\u219225\u219220 within the same position.",
+      "assumption_used_for_backtest": "Second tranche fires only once per position; further crosses while in-position do nothing.",
+      "impact_if_different": "A 'pyramid' interpretation would build larger and larger exposure on continued weakness."
+    },
+    {
+      "ambiguity": "[human review override]",
+      "assumption_used_for_backtest": "For RSI(14) use Wilder smoothing on regular-session 15m bars only; treat the last 30-minute blackout as 16:00-15:30 ET inclusive.",
+      "impact_if_different": "Recorded by a human reviewer at low-confidence prompt; supersedes the model's interpretation where applicable."
+    }
+  ],
+  "human_review": {
+    "triggered": true,
+    "action": "edit",
+    "override_notes": "For RSI(14) use Wilder smoothing on regular-session 15m bars only; treat the last 30-minute blackout as 16:00-15:30 ET inclusive.",
+    "reviewed_confidence": 0.55
+  }
+}

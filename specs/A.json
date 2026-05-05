@@ -1,0 +1,81 @@
+{
+  "strategy_id": "A",
+  "confidence": 0.85,
+  "instrument": "EURUSD",
+  "timeframe": "1h",
+  "data_source": "yfinance:EURUSD=X",
+  "entry_conditions": [
+    {
+      "condition_id": "long_breakout",
+      "expression": "After the first 1h bar following 08:00 London local time, enter long if any subsequent intraday bar trades at or above (opening_hour_high + 5 pips). Entry price = opening_hour_high + 5 pips.",
+      "indicators_required": [
+        "session_opening_range"
+      ]
+    },
+    {
+      "condition_id": "short_breakout",
+      "expression": "Mirror of long_breakout: enter short if any bar trades at or below (opening_hour_low - 5 pips). Entry price = opening_hour_low - 5 pips.",
+      "indicators_required": [
+        "session_opening_range"
+      ]
+    }
+  ],
+  "exit_conditions": [
+    {
+      "condition_id": "stop_loss",
+      "expression": "Long: exit at opening_hour_low. Short: exit at opening_hour_high."
+    },
+    {
+      "condition_id": "take_profit",
+      "expression": "Target = entry + 1.5 * |entry - stop|, signed by direction."
+    },
+    {
+      "condition_id": "end_of_day",
+      "expression": "Close any open position before NY session close (assumed 21:00 UTC)."
+    }
+  ],
+  "position_sizing_rule": "1 unit per signal (size normalised; performance is reported per-unit).",
+  "stop_loss_rule": "Long stop = opening_hour_low; short stop = opening_hour_high.",
+  "take_profit_rule": "1.5R from entry, where R = |entry - stop|.",
+  "session_filters": [
+    "Trade only intraday bars after the 08:00 London opening hour.",
+    "Skip all of Wednesday (news-day rule from the trader).",
+    "Force-close any open position before 21:00 UTC (assumed 'NY close')."
+  ],
+  "risk_controls": [
+    "One position at a time.",
+    "Stop-loss is mandatory and equals the opposite end of the opening range."
+  ],
+  "explicit_ambiguities": [
+    {
+      "ambiguity": "'8am London' is timezone-ambiguous: London is UTC+0 in winter (GMT) and UTC+1 in summer (BST). The strategy text does not specify how DST is handled.",
+      "assumption_used_for_backtest": "Use 08:00 UTC year-round as the 'London open hour'. This matches London local time only in winter.",
+      "impact_if_different": "Using 07:00 UTC during BST would shift the opening range by one hour and likely change which bar's high/low anchors the breakout, materially altering entry levels."
+    },
+    {
+      "ambiguity": "'NY close' is undefined: equity-market close is 21:00 UTC (winter) / 20:00 UTC (summer); FX 5pm ET rollover is 22:00 UTC / 21:00 UTC.",
+      "assumption_used_for_backtest": "Close any open position by 21:00 UTC.",
+      "impact_if_different": "An earlier or later cutoff changes how often trades exit at-market versus on stop/target, biasing the win-rate estimate."
+    },
+    {
+      "ambiguity": "The pip definition for EURUSD is not stated (standard pip = 0.0001 vs fractional/pipette = 0.00001).",
+      "assumption_used_for_backtest": "1 pip = 0.0001; 5 pips = 0.0005.",
+      "impact_if_different": "If the trader meant pipettes, the breakout buffer is 10x smaller and the system would generate many more trades with much smaller risk units."
+    },
+    {
+      "ambiguity": "'Skip Wednesdays cause of news' is a coarse heuristic; the trader does not specify whether it should adapt to actual high-impact news events.",
+      "assumption_used_for_backtest": "Skip every Wednesday unconditionally.",
+      "impact_if_different": "A news-calendar-driven filter would skip fewer days but more selectively, likely improving risk-adjusted returns versus blanket Wednesday avoidance."
+    },
+    {
+      "ambiguity": "Position sizing is not described.",
+      "assumption_used_for_backtest": "1 unit per signal \u2014 PnL reported per unit; metrics are sizing-agnostic.",
+      "impact_if_different": "Fixed-risk-per-trade sizing (e.g. 1% of equity at risk) would change drawdown geometry and Sharpe materially."
+    },
+    {
+      "ambiguity": "Intrabar ordering when both stop and target are touched in the same bar is not specified.",
+      "assumption_used_for_backtest": "Conservative: assume the stop is hit first.",
+      "impact_if_different": "Optimistic ordering (target first) would inflate win-rate by an amount proportional to the share of bars that touch both extremes."
+    }
+  ]
+}
