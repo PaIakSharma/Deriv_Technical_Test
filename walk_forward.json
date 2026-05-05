@@ -1,0 +1,296 @@
+[
+  {
+    "strategy_id": "A",
+    "windows": [
+      {
+        "window_index": 0,
+        "start": "2023-07-18 23:00:00+00:00",
+        "end": "2024-06-24 00:00:00+00:00",
+        "metrics": {
+          "strategy_id": "A",
+          "n_trades": 297,
+          "total_pnl": 0.04323011541366273,
+          "sum_return_pct": 0.04026896961822952,
+          "win_rate": 0.468013468013468,
+          "n_wins": 139,
+          "n_losses": 158,
+          "profit_factor": 1.19347047920421,
+          "gross_profit": 0.266675653934467,
+          "gross_loss": 0.2234455385208043,
+          "max_drawdown_pnl_units": 0.021303723812102326,
+          "sharpe_annualised": 2.093051895377095,
+          "sortino_annualised": 1.7381793012022324,
+          "avg_trade_duration_seconds": 13769.69696969697,
+          "exposure_pct": 0.19742787625999306,
+          "largest_losing_streak": 6,
+          "annualisation_factor_used": 93.59487165438073,
+          "bars_total": 5754,
+          "bars_in_position": 1136,
+          "engine_notes": [
+            "breakout_pips=5.0, pip_size=0.0001",
+            "london_open_hour_utc=8, ny_close_hour_utc=21",
+            "skip_dow=['Wednesday']"
+          ]
+        }
+      },
+      {
+        "window_index": 1,
+        "start": "2024-06-24 01:00:00+00:00",
+        "end": "2025-05-29 06:00:00+00:00",
+        "metrics": {
+          "strategy_id": "A",
+          "n_trades": 295,
+          "total_pnl": 0.0353443431854219,
+          "sum_return_pct": 0.03359105561760993,
+          "win_rate": 0.4711864406779661,
+          "n_wins": 139,
+          "n_losses": 156,
+          "profit_factor": 1.1297341059273789,
+          "gross_profit": 0.30778113174437327,
+          "gross_loss": 0.27243678855895137,
+          "max_drawdown_pnl_units": 0.030563568592070878,
+          "sharpe_annualised": 1.4110803164962396,
+          "sortino_annualised": 1.1466789398721673,
+          "avg_trade_duration_seconds": 15205.42372881356,
+          "exposure_pct": 0.21650738488271068,
+          "largest_losing_streak": 9,
+          "annualisation_factor_used": 93.59487165438073,
+          "bars_total": 5755,
+          "bars_in_position": 1246,
+          "engine_notes": [
+            "breakout_pips=5.0, pip_size=0.0001",
+            "london_open_hour_utc=8, ny_close_hour_utc=21",
+            "skip_dow=['Wednesday']"
+          ]
+        }
+      },
+      {
+        "window_index": 2,
+        "start": "2025-05-29 07:00:00+00:00",
+        "end": "2026-05-05 19:00:00+00:00",
+        "metrics": {
+          "strategy_id": "A",
+          "n_trades": 316,
+          "total_pnl": 0.020282501697538535,
+          "sum_return_pct": 0.017588449776237452,
+          "win_rate": 0.4810126582278481,
+          "n_wins": 152,
+          "n_losses": 164,
+          "profit_factor": 1.0771074425466747,
+          "gross_profit": 0.28332457685469503,
+          "gross_loss": 0.2630420751571565,
+          "max_drawdown_pnl_units": 0.03442935466766284,
+          "sharpe_annualised": 0.9078491175408201,
+          "sortino_annualised": 0.7528254432802557,
+          "avg_trade_duration_seconds": 13864.556962025317,
+          "exposure_pct": 0.2114682884448306,
+          "largest_losing_streak": 7,
+          "annualisation_factor_used": 93.59487165438073,
+          "bars_total": 5755,
+          "bars_in_position": 1217,
+          "engine_notes": [
+            "breakout_pips=5.0, pip_size=0.0001",
+            "london_open_hour_utc=8, ny_close_hour_utc=21",
+            "skip_dow=['Wednesday']"
+          ]
+        }
+      }
+    ],
+    "stability": "degrading"
+  },
+  {
+    "strategy_id": "B",
+    "windows": [
+      {
+        "window_index": 0,
+        "start": "2026-02-17 14:30:00+00:00",
+        "end": "2026-03-13 15:15:00+00:00",
+        "metrics": {
+          "strategy_id": "B",
+          "n_trades": 4,
+          "total_pnl": 12.08990478515625,
+          "sum_return_pct": 0.031141250000335564,
+          "win_rate": 1.0,
+          "n_wins": 4,
+          "n_losses": 0,
+          "profit_factor": "inf",
+          "gross_profit": 12.08990478515625,
+          "gross_loss": 0.0,
+          "max_drawdown_pnl_units": 0.0,
+          "sharpe_annualised": 17.09672563675518,
+          "sortino_annualised": 0.0,
+          "avg_trade_duration_seconds": 12600.0,
+          "exposure_pct": 0.11764705882352941,
+          "largest_losing_streak": 0,
+          "annualisation_factor_used": 187.18974330876145,
+          "bars_total": 476,
+          "bars_in_position": 56,
+          "engine_notes": [
+            "rsi(14), entry<25.0/+<20.0, exit>50.0",
+            "blackout_last_min=30"
+          ]
+        }
+      },
+      {
+        "window_index": 1,
+        "start": "2026-03-13 15:30:00+00:00",
+        "end": "2026-04-09 17:15:00+00:00",
+        "metrics": {
+          "strategy_id": "B",
+          "n_trades": 3,
+          "total_pnl": -4.48736572265625,
+          "sum_return_pct": -0.008138896549636072,
+          "win_rate": 0.3333333333333333,
+          "n_wins": 1,
+          "n_losses": 2,
+          "profit_factor": 0.5466144548593981,
+          "gross_profit": 5.41009521484375,
+          "gross_loss": 9.8974609375,
+          "max_drawdown_pnl_units": 9.8974609375,
+          "sharpe_annualised": -4.173284071942713,
+          "sortino_annualised": -0.6804774695464435,
+          "avg_trade_duration_seconds": 17400.0,
+          "exposure_pct": 0.12184873949579832,
+          "largest_losing_streak": 2,
+          "annualisation_factor_used": 187.18974330876145,
+          "bars_total": 476,
+          "bars_in_position": 58,
+          "engine_notes": [
+            "rsi(14), entry<25.0/+<20.0, exit>50.0",
+            "blackout_last_min=30"
+          ]
+        }
+      },
+      {
+        "window_index": 2,
+        "start": "2026-04-09 17:30:00+00:00",
+        "end": "2026-05-05 19:15:00+00:00",
+        "metrics": {
+          "strategy_id": "B",
+          "n_trades": 1,
+          "total_pnl": 2.472503662109375,
+          "sum_return_pct": 0.0037728131232558615,
+          "win_rate": 1.0,
+          "n_wins": 1,
+          "n_losses": 0,
+          "profit_factor": "inf",
+          "gross_profit": 2.472503662109375,
+          "gross_loss": 0.0,
+          "max_drawdown_pnl_units": 0.0,
+          "sharpe_annualised": 8.579827817511916,
+          "sortino_annualised": 0.0,
+          "avg_trade_duration_seconds": 13500.0,
+          "exposure_pct": 0.031512605042016806,
+          "largest_losing_streak": 0,
+          "annualisation_factor_used": 187.18974330876145,
+          "bars_total": 476,
+          "bars_in_position": 15,
+          "engine_notes": [
+            "rsi(14), entry<25.0/+<20.0, exit>50.0",
+            "blackout_last_min=30"
+          ]
+        }
+      }
+    ],
+    "stability": "unstable"
+  },
+  {
+    "strategy_id": "C",
+    "windows": [
+      {
+        "window_index": 0,
+        "start": "2024-01-01 00:00:00+00:00",
+        "end": "2024-01-01 23:59:00+00:00",
+        "metrics": {
+          "strategy_id": "C",
+          "n_trades": 50,
+          "total_pnl": 26.0,
+          "sum_return_pct": 2.0,
+          "win_rate": 0.52,
+          "n_wins": 26,
+          "n_losses": 24,
+          "profit_factor": 1.4333333333333333,
+          "gross_profit": 86.0,
+          "gross_loss": 60.0,
+          "max_drawdown_pnl_units": 31.0,
+          "sharpe_annualised": 12.381410037345841,
+          "sortino_annualised": 4.005314259401072,
+          "avg_trade_duration_seconds": 60.0,
+          "exposure_pct": 0.034722222222222224,
+          "largest_losing_streak": 5,
+          "annualisation_factor_used": 724.9827584156743,
+          "bars_total": 1440,
+          "bars_in_position": 50,
+          "engine_notes": [
+            "initial_stake=$1.0, dd_cap=$200.0, max_trades=50",
+            "Even-money payout. Tie counts as loss. One settled trade per bar.",
+            "Hit max_trades cap at i=50"
+          ]
+        }
+      },
+      {
+        "window_index": 1,
+        "start": "2024-01-02 00:00:00+00:00",
+        "end": "2024-01-02 23:59:00+00:00",
+        "metrics": {
+          "strategy_id": "C",
+          "n_trades": 50,
+          "total_pnl": 28.0,
+          "sum_return_pct": 6.0,
+          "win_rate": 0.56,
+          "n_wins": 28,
+          "n_losses": 22,
+          "profit_factor": 1.4912280701754386,
+          "gross_profit": 85.0,
+          "gross_loss": 57.0,
+          "max_drawdown_pnl_units": 31.0,
+          "sharpe_annualised": 13.30935173079098,
+          "sortino_annualised": 4.0940919044176445,
+          "avg_trade_duration_seconds": 60.0,
+          "exposure_pct": 0.034722222222222224,
+          "largest_losing_streak": 5,
+          "annualisation_factor_used": 724.9827584156743,
+          "bars_total": 1440,
+          "bars_in_position": 50,
+          "engine_notes": [
+            "initial_stake=$1.0, dd_cap=$200.0, max_trades=50",
+            "Even-money payout. Tie counts as loss. One settled trade per bar.",
+            "Hit max_trades cap at i=50"
+          ]
+        }
+      },
+      {
+        "window_index": 2,
+        "start": "2024-01-03 00:00:00+00:00",
+        "end": "2024-01-03 23:59:00+00:00",
+        "metrics": {
+          "strategy_id": "C",
+          "n_trades": 50,
+          "total_pnl": 29.0,
+          "sum_return_pct": 8.0,
+          "win_rate": 0.58,
+          "n_wins": 29,
+          "n_losses": 21,
+          "profit_factor": 1.6744186046511629,
+          "gross_profit": 72.0,
+          "gross_loss": 43.0,
+          "max_drawdown_pnl_units": 15.0,
+          "sharpe_annualised": 22.315546475008105,
+          "sortino_annualised": 8.509993043984402,
+          "avg_trade_duration_seconds": 60.0,
+          "exposure_pct": 0.034722222222222224,
+          "largest_losing_streak": 4,
+          "annualisation_factor_used": 724.9827584156743,
+          "bars_total": 1440,
+          "bars_in_position": 50,
+          "engine_notes": [
+            "initial_stake=$1.0, dd_cap=$200.0, max_trades=50",
+            "Even-money payout. Tie counts as loss. One settled trade per bar.",
+            "Hit max_trades cap at i=50"
+          ]
+        }
+      }
+    ],
+    "stability": "stable"
+  }
+]

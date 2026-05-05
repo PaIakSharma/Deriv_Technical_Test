@@ -1,0 +1,412 @@
+[
+  {
+    "strategy_id": "A",
+    "scenarios": [
+      {
+        "name": "trendless_chop",
+        "description": "Low-vol mean-reverting day-after-day; opening ranges trigger breakouts that immediately reverse.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.0,
+          "sigma_per_year": 0.04,
+          "shock_bars": [],
+          "shock_pct": [],
+          "n_bars": 1500,
+          "bar_minutes": 60.0,
+          "seed": 999,
+          "initial_price": 1.1232168674468994
+        },
+        "backtest_result": {
+          "strategy_id": "A",
+          "n_trades": 61,
+          "total_pnl": 0.00919037747362772,
+          "sum_return_pct": 0.008178555091722769,
+          "win_rate": 0.5245901639344263,
+          "n_wins": 32,
+          "n_losses": 29,
+          "profit_factor": 1.3837253076451137,
+          "gross_profit": 0.03314078494095951,
+          "gross_loss": 0.02395040746733179,
+          "max_drawdown_pnl_units": 0.00629738253854506,
+          "sharpe_annualised": 3.5117959833255368,
+          "sortino_annualised": 2.439065170587859,
+          "avg_trade_duration_seconds": 18944.262295081968,
+          "exposure_pct": 0.214,
+          "largest_losing_streak": 4,
+          "annualisation_factor_used": 93.59487165438073,
+          "bars_total": 1500,
+          "bars_in_position": 321,
+          "engine_notes": [
+            "breakout_pips=5.0, pip_size=0.0001",
+            "london_open_hour_utc=8, ny_close_hour_utc=21",
+            "skip_dow=['Wednesday']"
+          ]
+        },
+        "failure_mode_observed": "expected: Both long and short breakouts stop out repeatedly; max losing streak grows. | observed: strategy survived (total_pnl=0.0092, n_trades=61, max_dd=0.0063)"
+      },
+      {
+        "name": "news_gap_open",
+        "description": "Wednesday-skipped, but a Tuesday morning shock 50 bars in expands range and gaps through stops.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.0,
+          "sigma_per_year": 0.07,
+          "shock_bars": [
+            50
+          ],
+          "shock_pct": [
+            -1.5
+          ],
+          "n_bars": 1500,
+          "bar_minutes": 60.0,
+          "seed": 1000,
+          "initial_price": 1.1232168674468994
+        },
+        "backtest_result": {
+          "strategy_id": "A",
+          "n_trades": 89,
+          "total_pnl": 0.0185057273596565,
+          "sum_return_pct": 0.016889102395784422,
+          "win_rate": 0.5056179775280899,
+          "n_wins": 45,
+          "n_losses": 44,
+          "profit_factor": 1.327519684417933,
+          "gross_profit": 0.07500836900253915,
+          "gross_loss": 0.056502641642882656,
+          "max_drawdown_pnl_units": 0.007993443402844136,
+          "sharpe_annualised": 3.7247606007762233,
+          "sortino_annualised": 4.401566139374724,
+          "avg_trade_duration_seconds": 13995.505617977527,
+          "exposure_pct": 0.23066666666666666,
+          "largest_losing_streak": 5,
+          "annualisation_factor_used": 93.59487165438073,
+          "bars_total": 1500,
+          "bars_in_position": 346,
+          "engine_notes": [
+            "breakout_pips=5.0, pip_size=0.0001",
+            "london_open_hour_utc=8, ny_close_hour_utc=21",
+            "skip_dow=['Wednesday']"
+          ]
+        },
+        "failure_mode_observed": "expected: Long breakout trigger hits, then sudden reversal blows through stop with slippage we don't model. | observed: strategy survived (total_pnl=0.0185, n_trades=89, max_dd=0.0080)"
+      },
+      {
+        "name": "single_direction_grind",
+        "description": "Low-vol persistent uptrend; opening ranges always break upward \u2014 but 1.5R targets miss because of small bar bodies.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.3,
+          "sigma_per_year": 0.05,
+          "shock_bars": [],
+          "shock_pct": [],
+          "n_bars": 1500,
+          "bar_minutes": 60.0,
+          "seed": 1001,
+          "initial_price": 1.1232168674468994
+        },
+        "backtest_result": {
+          "strategy_id": "A",
+          "n_trades": 69,
+          "total_pnl": 0.03223190975875556,
+          "sum_return_pct": 0.02784923139659828,
+          "win_rate": 0.6231884057971014,
+          "n_wins": 43,
+          "n_losses": 26,
+          "profit_factor": 2.3580867073798752,
+          "gross_profit": 0.055965232221604655,
+          "gross_loss": 0.023733322462849094,
+          "max_drawdown_pnl_units": 0.005645509023056716,
+          "sharpe_annualised": 9.524833850156579,
+          "sortino_annualised": 8.807411431468921,
+          "avg_trade_duration_seconds": 17060.869565217392,
+          "exposure_pct": 0.218,
+          "largest_losing_streak": 4,
+          "annualisation_factor_used": 93.59487165438073,
+          "bars_total": 1500,
+          "bars_in_position": 327,
+          "engine_notes": [
+            "breakout_pips=5.0, pip_size=0.0001",
+            "london_open_hour_utc=8, ny_close_hour_utc=21",
+            "skip_dow=['Wednesday']"
+          ]
+        },
+        "failure_mode_observed": "expected: Trades enter long but EOD-exit before targets, capping wins. | observed: strategy survived (total_pnl=0.0322, n_trades=69, max_dd=0.0056)"
+      }
+    ]
+  },
+  {
+    "strategy_id": "B",
+    "scenarios": [
+      {
+        "name": "persistent_downtrend",
+        "description": "Strong downtrend keeps RSI under 25; entries stack and ride the trend down.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": -0.4,
+          "sigma_per_year": 0.3,
+          "shock_bars": [],
+          "shock_pct": [],
+          "n_bars": 1428,
+          "bar_minutes": 15.0,
+          "seed": 999,
+          "initial_price": 599.4000244140625
+        },
+        "backtest_result": {
+          "strategy_id": "B",
+          "n_trades": 6,
+          "total_pnl": 0.050273028092590266,
+          "sum_return_pct": 0.0021083112517338402,
+          "win_rate": 0.6666666666666666,
+          "n_wins": 4,
+          "n_losses": 2,
+          "profit_factor": 1.0061898046213504,
+          "gross_profit": 8.172181742171347,
+          "gross_loss": 8.121908714078756,
+          "max_drawdown_pnl_units": 8.121908714078756,
+          "sharpe_annualised": 0.0302902324030802,
+          "sortino_annualised": 0.0015680851811948838,
+          "avg_trade_duration_seconds": 19800.0,
+          "exposure_pct": 0.09243697478991597,
+          "largest_losing_streak": 2,
+          "annualisation_factor_used": 187.18974330876145,
+          "bars_total": 1428,
+          "bars_in_position": 132,
+          "engine_notes": [
+            "rsi(14), entry<25.0/+<20.0, exit>50.0",
+            "blackout_last_min=30"
+          ]
+        },
+        "failure_mode_observed": "expected: Repeated full-size entries with no stop-loss; large unrealised drawdown until EOD. | observed: strategy survived (total_pnl=0.0503, n_trades=6, max_dd=8.1219)"
+      },
+      {
+        "name": "earnings_cliff",
+        "description": "Quiet drift then a single -8% shock 100 bars in.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.0,
+          "sigma_per_year": 0.1,
+          "shock_bars": [
+            100
+          ],
+          "shock_pct": [
+            -8.0
+          ],
+          "n_bars": 1428,
+          "bar_minutes": 15.0,
+          "seed": 1000,
+          "initial_price": 599.4000244140625
+        },
+        "backtest_result": {
+          "strategy_id": "B",
+          "n_trades": 7,
+          "total_pnl": 1.1168946550291707,
+          "sum_return_pct": 0.0034124097944199685,
+          "win_rate": 0.5714285714285714,
+          "n_wins": 4,
+          "n_losses": 3,
+          "profit_factor": 2.5861308064727173,
+          "gross_profit": 1.82105767265125,
+          "gross_loss": 0.7041630176220792,
+          "max_drawdown_pnl_units": 0.7041630176220792,
+          "sharpe_annualised": 4.928902707031623,
+          "sortino_annualised": 0.855875296850403,
+          "avg_trade_duration_seconds": 26871.428571428572,
+          "exposure_pct": 0.14635854341736695,
+          "largest_losing_streak": 3,
+          "annualisation_factor_used": 187.18974330876145,
+          "bars_total": 1428,
+          "bars_in_position": 209,
+          "engine_notes": [
+            "rsi(14), entry<25.0/+<20.0, exit>50.0",
+            "blackout_last_min=30"
+          ]
+        },
+        "failure_mode_observed": "expected: If a position is open through the shock, no stop catches it; large biggest_loss. | observed: strategy survived (total_pnl=1.1169, n_trades=7, max_dd=0.7042)"
+      },
+      {
+        "name": "rsi_whipsaw",
+        "description": "High vol mean-reverting around the entry threshold.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.0,
+          "sigma_per_year": 0.45,
+          "shock_bars": [],
+          "shock_pct": [],
+          "n_bars": 1428,
+          "bar_minutes": 15.0,
+          "seed": 1001,
+          "initial_price": 599.4000244140625
+        },
+        "backtest_result": {
+          "strategy_id": "B",
+          "n_trades": 3,
+          "total_pnl": 7.051818664800635,
+          "sum_return_pct": 0.020582202661501164,
+          "win_rate": 1.0,
+          "n_wins": 3,
+          "n_losses": 0,
+          "profit_factor": "inf",
+          "gross_profit": 7.051818664800635,
+          "gross_loss": 0.0,
+          "max_drawdown_pnl_units": 0.0,
+          "sharpe_annualised": 8.111136197797999,
+          "sortino_annualised": 0.0,
+          "avg_trade_duration_seconds": 15900.0,
+          "exposure_pct": 0.03711484593837535,
+          "largest_losing_streak": 0,
+          "annualisation_factor_used": 187.18974330876145,
+          "bars_total": 1428,
+          "bars_in_position": 53,
+          "engine_notes": [
+            "rsi(14), entry<25.0/+<20.0, exit>50.0",
+            "blackout_last_min=30"
+          ]
+        },
+        "failure_mode_observed": "expected: Many small frictionless trades but no consistent edge; profit factor near 1. | observed: strategy survived (total_pnl=7.0518, n_trades=3, max_dd=0.0000)"
+      }
+    ]
+  },
+  {
+    "strategy_id": "C",
+    "scenarios": [
+      {
+        "name": "long_loss_streak",
+        "description": "Slight negative drift produces clusters of losing predictions.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": -0.1,
+          "sigma_per_year": 0.75,
+          "shock_bars": [],
+          "shock_pct": [],
+          "n_bars": 1500,
+          "bar_minutes": 1.0,
+          "seed": 999,
+          "initial_price": 100.02902789463162
+        },
+        "backtest_result": {
+          "strategy_id": "C",
+          "n_trades": 50,
+          "total_pnl": 21.0,
+          "sum_return_pct": -6.0,
+          "win_rate": 0.44,
+          "n_wins": 22,
+          "n_losses": 28,
+          "profit_factor": 1.2164948453608246,
+          "gross_profit": 118.0,
+          "gross_loss": 97.0,
+          "max_drawdown_pnl_units": 63.0,
+          "sharpe_annualised": 5.1801078365824855,
+          "sortino_annualised": 1.5919720286097703,
+          "avg_trade_duration_seconds": 60.0,
+          "exposure_pct": 0.03333333333333333,
+          "largest_losing_streak": 6,
+          "annualisation_factor_used": 724.9827584156743,
+          "bars_total": 1500,
+          "bars_in_position": 50,
+          "engine_notes": [
+            "initial_stake=$1.0, dd_cap=$200.0, max_trades=50",
+            "Even-money payout. Tie counts as loss. One settled trade per bar.",
+            "Hit max_trades cap at i=50"
+          ]
+        },
+        "failure_mode_observed": "expected: 8+ consecutive losses breach the $200 drawdown cap; ruin. | observed: strategy survived (total_pnl=21.0000, n_trades=50, max_dd=63.0000)"
+      },
+      {
+        "name": "high_vol_random",
+        "description": "Pure random walk at higher sigma; tail of loss streaks gets fatter.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.0,
+          "sigma_per_year": 1.2,
+          "shock_bars": [],
+          "shock_pct": [],
+          "n_bars": 1500,
+          "bar_minutes": 1.0,
+          "seed": 1000,
+          "initial_price": 100.02902789463162
+        },
+        "backtest_result": {
+          "strategy_id": "C",
+          "n_trades": 50,
+          "total_pnl": -36.0,
+          "sum_return_pct": 4.0,
+          "win_rate": 0.54,
+          "n_wins": 27,
+          "n_losses": 23,
+          "profit_factor": 0.6538461538461539,
+          "gross_profit": 68.0,
+          "gross_loss": 104.0,
+          "max_drawdown_pnl_units": 63.0,
+          "sharpe_annualised": -14.597514956454459,
+          "sortino_annualised": -2.4853094217331186,
+          "avg_trade_duration_seconds": 60.0,
+          "exposure_pct": 0.03333333333333333,
+          "largest_losing_streak": 6,
+          "annualisation_factor_used": 724.9827584156743,
+          "bars_total": 1500,
+          "bars_in_position": 50,
+          "engine_notes": [
+            "initial_stake=$1.0, dd_cap=$200.0, max_trades=50",
+            "Even-money payout. Tie counts as loss. One settled trade per bar.",
+            "Hit max_trades cap at i=50"
+          ]
+        },
+        "failure_mode_observed": "expected: Probability of an 8-loss streak in 50 trades rises; ruin frequency increases. | observed: net loss of -36.0000 over 50 trades; max losing streak 6, max DD 63.0000"
+      },
+      {
+        "name": "downward_shock_then_recover",
+        "description": "Stable random walk with a single concentrated 5-bar down move at bar 20.",
+        "generated_path_assumptions": {
+          "process": "gbm_with_shocks",
+          "drift_per_year": 0.0,
+          "sigma_per_year": 0.75,
+          "shock_bars": [
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "shock_pct": [
+            -0.5,
+            -0.5,
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "n_bars": 1500,
+          "bar_minutes": 1.0,
+          "seed": 1001,
+          "initial_price": 100.02902789463162
+        },
+        "backtest_result": {
+          "strategy_id": "C",
+          "n_trades": 50,
+          "total_pnl": 22.0,
+          "sum_return_pct": -6.0,
+          "win_rate": 0.44,
+          "n_wins": 22,
+          "n_losses": 28,
+          "profit_factor": 1.1057692307692308,
+          "gross_profit": 230.0,
+          "gross_loss": 208.0,
+          "max_drawdown_pnl_units": 127.0,
+          "sharpe_annualised": 2.486896015492443,
+          "sortino_annualised": 0.7590908592290423,
+          "avg_trade_duration_seconds": 60.0,
+          "exposure_pct": 0.03333333333333333,
+          "largest_losing_streak": 7,
+          "annualisation_factor_used": 724.9827584156743,
+          "bars_total": 1500,
+          "bars_in_position": 50,
+          "engine_notes": [
+            "initial_stake=$1.0, dd_cap=$200.0, max_trades=50",
+            "Even-money payout. Tie counts as loss. One settled trade per bar.",
+            "Hit max_trades cap at i=50"
+          ]
+        },
+        "failure_mode_observed": "expected: Shock window forces 5 consecutive losses, doubling stake to $32; subsequent random losses can finish the ruin. | observed: strategy survived (total_pnl=22.0000, n_trades=50, max_dd=127.0000)"
+      }
+    ]
+  }
+]
