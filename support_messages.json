@@ -1,0 +1,17 @@
+[
+  { "id": 1, "message": "I deposited $200 via Skrill 3 days ago and it still hasn't appeared in my account." },
+  { "id": 2, "message": "What is the difference between Deriv MT5 and Deriv X?" },
+  { "id": 3, "message": "My account has been suspended and I don't know why. I need this resolved urgently." },
+  { "id": 4, "message": "I want to close my account and withdraw all remaining funds." },
+  { "id": 5, "message": "Can I trade cryptocurrencies on Deriv if I'm based in Germany?" },
+  { "id": 6, "message": "The Deriv Bot stopped working mid-session and I think I lost money because of it." },
+  { "id": 7, "message": "How do I set a stop-loss on a multiplier contract?" },
+  { "id": 8, "message": "I accidentally sent funds to the wrong internal account. Can this be reversed?" },
+  { "id": 9, "message": "Your platform is a scam. I want a full refund of all my deposits immediately." },
+  { "id": 10, "message": "I can't upload my proof of identity — the file upload button doesn't work on Safari." },
+  { "id": 11, "message": "I referred 5 friends last month but my affiliate commission hasn't been paid." },
+  { "id": 12, "message": "What leverage is available for gold trading on standard accounts?" },
+  { "id": 13, "message": "I've been charged an inactivity fee but I logged in last week — this must be a system error." },
+  { "id": 14, "message": "My withdrawal has been pending for 8 days. I need my money back now or I'm filing a chargeback." },
+  { "id": 15, "message": "Is Deriv regulated in South Africa? I need documentation for my tax advisor." }
+]
