@@ -1,0 +1,79 @@
+[
+  {
+    "strategy_id": "A",
+    "confidence": 0.7999999999999999,
+    "risk_level": "low",
+    "is_high_risk": false,
+    "is_martingale_or_loss_escalating": false,
+    "overfitting_risk": "Fixed 5-pip breakout buffer, fixed 1.5R target, and the Wednesday skip are unjustified by the data presented. Performance could be sensitive to all three.",
+    "regime_dependence": "Opening-range breakout requires intraday continuation after the London open. Range-bound days with no follow-through generate stop-outs; gappy news mornings tend to over-trigger and reverse.",
+    "assumption_sensitivity": "Most sensitive to the timezone and 'end of day' assumptions; secondary sensitivity to intrabar ordering between stop and target.",
+    "execution_realism": "Backtest assumes perfect fills at trigger prices with no slippage and no spread cost. Real intraday fills, especially around news, would widen effective stops.",
+    "likely_failure_modes": [
+      "Range days: the price re-enters the opening range and stops the trade out at the opposite extreme.",
+      "Real news on non-Wednesday days bypasses the day-of-week filter.",
+      "Wide opening-hour ranges produce stop distances that dominate the 1.5R target."
+    ],
+    "robustness_verdict": "robust",
+    "warnings": [
+      "Sample size is limited to the available history window; conclusions do not generalise.",
+      "No transaction costs are modelled; net returns will be lower in practice."
+    ],
+    "ruin_risk_discussion": "not applicable: this strategy does not use loss-escalating sizing.",
+    "high_win_rate_misleading_explanation": "not applicable: win rate is not used as the primary edge claim."
+  },
+  {
+    "strategy_id": "B",
+    "confidence": 0.5,
+    "risk_level": "medium",
+    "is_high_risk": false,
+    "is_martingale_or_loss_escalating": false,
+    "overfitting_risk": "Thresholds 25 / 20 / 50 are the textbook defaults; the rule is not parameter-tuned to this sample, but choice of those exact levels is convention rather than evidence.",
+    "regime_dependence": "RSI mean-reversion entries depend on rangebound or mildly trending behaviour. In a strong downtrend RSI<25 prints repeatedly while price keeps falling, and entries get run over.",
+    "assumption_sensitivity": "Most sensitive to the timezone and 'end of day' assumptions; secondary sensitivity to intrabar ordering between stop and target.",
+    "execution_realism": "Backtest assumes perfect fills at trigger prices with no slippage and no spread cost. Real intraday fills, especially around news, would widen effective stops.",
+    "likely_failure_modes": [
+      "Persistent downtrends \u2014 RSI oversold readings stay oversold while price keeps dropping.",
+      "Gap-down opens around earnings or macro news \u2014 no stop-loss is defined.",
+      "Whipsaw days where RSI bounces 25 \u2192 50 \u2192 25 generate frequent in-and-out trades."
+    ],
+    "robustness_verdict": "fragile",
+    "warnings": [
+      "Sample size is limited to the available history window; conclusions do not generalise.",
+      "No transaction costs are modelled; net returns will be lower in practice."
+    ],
+    "ruin_risk_discussion": "not applicable: this strategy does not use loss-escalating sizing.",
+    "high_win_rate_misleading_explanation": "not applicable: win rate is not used as the primary edge claim.",
+    "human_review": {
+      "triggered": true,
+      "action": "accept",
+      "override_notes": "",
+      "reviewed_confidence": 0.5
+    }
+  },
+  {
+    "strategy_id": "C",
+    "confidence": 0.92,
+    "risk_level": "high",
+    "is_high_risk": true,
+    "is_martingale_or_loss_escalating": true,
+    "overfitting_risk": "Not classical curve-fitting risk because the rule has no parameters tuned on data, but the empirical 'profitability' over short windows is an artefact of the specific loss-streak distribution observed, not a stable edge.",
+    "regime_dependence": "Catastrophically dependent on never observing a long enough loss streak to breach the drawdown cap. Any regime with mean-reverting returns or higher autocorrelation in losses (e.g. trending down) accelerates ruin.",
+    "assumption_sensitivity": "Most sensitive to (a) payout assumption \u2014 even-money was assumed; real Vol75 binaries pay <1.0x, which makes expected value strictly negative; and (b) tick frequency \u2014 at 2s tick rate the trader sees ~30x more events per session, packing the loss-streak event into a much smaller wall-clock window.",
+    "execution_realism": "Backtest assumes perfect fills at bar close, no slippage, no platform latency, and no platform-side stake limits. Real martingale runs hit broker max-stake caps before the drawdown cap, which converts a paper -$200 cap into an unrecoverable position.",
+    "likely_failure_modes": [
+      "8+ consecutive losses \u2192 cumulative -$255 exceeds -$200 cap; session ends in ruin.",
+      "Broker max-stake cap hits before doubling completes; loss can't be recovered.",
+      "Sub-1.0 payout makes expectancy negative even with 50% win rate.",
+      "Path dependency: P(losing streak \u2265 k) grows with session length."
+    ],
+    "robustness_verdict": "fragile",
+    "warnings": [
+      "MARTINGALE / LOSS-DOUBLING \u2014 high risk of ruin regardless of in-sample win rate.",
+      "Geometric stake growth means a single tail event wipes out many small winners.",
+      "Performance metrics are misleading: Sharpe is dominated by the absence of the tail event in this short sample."
+    ],
+    "ruin_risk_discussion": "Stake doubling produces cumulative risk 2^k - 1 after k consecutive losses. To breach the $200 cap requires only 8 losses in a row \u2014 at a 50% win rate that has probability 1/256 per any 8-length window, so over even a moderate session the cumulative probability of ruin is non-trivial and approaches 1 as session length grows. Backtest measured max_dd=31.00 on this seed but a different seed could exceed it without changing any rule.",
+    "high_win_rate_misleading_explanation": "With even-money payouts and 50% win probability the expectancy of each trade is exactly zero. The strategy wins ~50% of trades in the sample (n=50), but each of those wins yields the small reset stake while a single 8-loss run loses 255x that stake. A high win-rate accounting therefore disguises strongly negative skew."
+  }
+]
