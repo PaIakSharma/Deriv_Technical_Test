@@ -1,0 +1,119 @@
+[
+  {
+    "strategy_id": "A",
+    "parameter": "breakout_pips",
+    "table": [
+      {
+        "value": 2.5,
+        "total_pnl": 0.099152965545666,
+        "n_trades": 1005,
+        "sharpe": 1.519246747262099,
+        "max_dd": 0.05519724178314367
+      },
+      {
+        "value": 3.5,
+        "total_pnl": 0.08583812599180085,
+        "n_trades": 972,
+        "sharpe": 1.2832449683709082,
+        "max_dd": 0.05303604545593599
+      },
+      {
+        "value": 4.5,
+        "total_pnl": 0.07381491680140595,
+        "n_trades": 924,
+        "sharpe": 1.0942920570627648,
+        "max_dd": 0.058719864082341866
+      },
+      {
+        "value": 5.5,
+        "total_pnl": 0.07380937213895922,
+        "n_trades": 891,
+        "sharpe": 1.080766905232865,
+        "max_dd": 0.048069828319551755
+      },
+      {
+        "value": 6.5,
+        "total_pnl": 0.0673530699730005,
+        "n_trades": 862,
+        "sharpe": 0.9728410015716434,
+        "max_dd": 0.05699507188796926
+      },
+      {
+        "value": 7.5,
+        "total_pnl": 0.0813333954810993,
+        "n_trades": 818,
+        "sharpe": 1.1724513903284826,
+        "max_dd": 0.0492028827667248
+      }
+    ],
+    "interpretation": {
+      "strategy_id": "A",
+      "parameter": "breakout_pips",
+      "stability_summary": "non-monotonic: PnL has at least one local optimum, hinting at parameter-space cliffs.",
+      "best_value": 2.5,
+      "worst_value": 6.5,
+      "interpretation": "Spread between best and worst PnL across the breakout_pips sweep is 0.0318. This is large relative to the central value and indicates that the original choice was not robust in this sample."
+    }
+  },
+  {
+    "strategy_id": "B",
+    "parameter": "rsi_entry_threshold",
+    "table": [
+      {
+        "value": 12.5,
+        "total_pnl": -2.1099853515625,
+        "n_trades": 1,
+        "sharpe": -4.953565900041146,
+        "max_dd": 2.1099853515625
+      },
+      {
+        "value": 17.5,
+        "total_pnl": -1.576171875,
+        "n_trades": 3,
+        "sharpe": -1.2487120013747117,
+        "max_dd": 5.501220703125
+      },
+      {
+        "value": 22.5,
+        "total_pnl": 6.2100830078125,
+        "n_trades": 7,
+        "sharpe": 2.920861810765237,
+        "max_dd": 8.8299560546875
+      },
+      {
+        "value": 27.5,
+        "total_pnl": 17.595245361328125,
+        "n_trades": 13,
+        "sharpe": 5.970261577694788,
+        "max_dd": 11.49493408203125
+      },
+      {
+        "value": 32.5,
+        "total_pnl": 20.937896728515625,
+        "n_trades": 19,
+        "sharpe": 5.248773767138108,
+        "max_dd": 15.094390869140625
+      },
+      {
+        "value": 37.5,
+        "total_pnl": 17.99151611328125,
+        "n_trades": 27,
+        "sharpe": 3.9853622375504543,
+        "max_dd": 26.73944091796875
+      }
+    ],
+    "interpretation": {
+      "strategy_id": "B",
+      "parameter": "rsi_entry_threshold",
+      "stability_summary": "non-monotonic: PnL has at least one local optimum, hinting at parameter-space cliffs.",
+      "best_value": 32.5,
+      "worst_value": 12.5,
+      "interpretation": "Spread between best and worst PnL across the rsi_entry_threshold sweep is 23.0479. This is large relative to the central value and indicates that the original choice was not robust in this sample."
+    }
+  },
+  {
+    "strategy_id": "C",
+    "skipped": true,
+    "reason": "no sweep defined for template martingale_fixed"
+  }
+]

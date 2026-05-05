@@ -1,0 +1,59 @@
+{
+  "A": {
+    "symbol": "EURUSD=X",
+    "interval": "1h",
+    "preferred_source": "yfinance",
+    "synthetic_fallback": false,
+    "fetched_at": "2026-05-05T19:25:10+00:00",
+    "n_bars": 17264,
+    "start": "2023-07-18 23:00:00+00:00",
+    "end": "2026-05-05 19:00:00+00:00",
+    "columns": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume"
+    ]
+  },
+  "B": {
+    "symbol": "QQQ",
+    "interval": "15m",
+    "preferred_source": "yfinance",
+    "synthetic_fallback": false,
+    "fetched_at": "2026-05-05T19:25:14+00:00",
+    "n_bars": 1428,
+    "start": "2026-02-17 14:30:00+00:00",
+    "end": "2026-05-05 19:15:00+00:00",
+    "columns": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume"
+    ]
+  },
+  "C": {
+    "symbol": "Vol75-synthetic",
+    "interval": "1m",
+    "preferred_source": "geometric_brownian_motion",
+    "synthetic_fallback": true,
+    "process": "geometric_brownian_motion",
+    "drift_per_year": 0.0,
+    "sigma_per_year": 0.75,
+    "seed": 123,
+    "initial_price": 100.0,
+    "n_bars": 4320,
+    "bar_minutes": 1,
+    "start": "2024-01-01 00:00:00+00:00",
+    "end": "2024-01-03 23:59:00+00:00",
+    "columns": [
+      "Open",
+      "High",
+      "Low",
+      "Close",
+      "Volume"
+    ],
+    "fetched_at": "2026-05-05T19:25:15+00:00"
+  }
+}
